@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Овезов Михаил</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Experience layout and effects. */
+    :root { color-scheme: dark; font-family: Arial, Helvetica, sans-serif; }
+    body { margin: 0; min-height: 100vh; display: block; color: white; background: #000; overflow: auto; overflow-x: hidden; }
+    button { font: inherit; color: inherit; cursor: pointer; }
+    #start { position: fixed; inset: 0; z-index: 10; width: 100%; height: 100%; border: 0; background: black; display: grid; place-content: center; gap: 24px; transition: opacity .8s, visibility .8s; }
+    #start strong { font-size: clamp(48px, 12vw, 160px); font-weight: 400; letter-spacing: .12em; padding-left: .12em; }
+    #start span { font-size: 10px; letter-spacing: .25em; color: #999; }
+    #start:hover strong { text-shadow: 0 0 40px #ffffff80; }
+    #start:focus-visible { outline: 2px solid white; outline-offset: -12px; }
+    .started #start { opacity: 0; visibility: hidden; pointer-events: none; }
+    .experience { position: relative; min-height: 100svh; overflow: hidden; isolation: isolate; opacity: 0; transition: opacity 1.5s; }
+    .started .experience { opacity: 1; }
+    #background-video { position: fixed; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -4; pointer-events: none; }
+    .video-shade { position: fixed; inset: 0; z-index: -3; background: #0008; pointer-events: none; }
+    .aura { position: absolute; z-index: -2; width: 90vw; height: 90vw; top: -25vw; left: -25vw; background: radial-gradient(circle, #08477955, transparent 65%); animation: drift 16s ease-in-out infinite alternate; pointer-events: none; }
+    .aura.second { top: auto; left: auto; right: -40vw; bottom: -50vw; background: radial-gradient(circle, #59457844, transparent 65%); animation-direction: alternate-reverse; }
+    .grid { position: absolute; inset: 0; z-index: -1; opacity: .14; background-image: linear-gradient(#77889933 1px, transparent 1px), linear-gradient(90deg, #77889933 1px, transparent 1px); background-size: 80px 80px; mask-image: linear-gradient(transparent, black, transparent); pointer-events: none; }
+    .particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .particles i { position: absolute; left: var(--x); bottom: -15px; width: 2px; height: 2px; border-radius: 50%; background: #c2e5ff; box-shadow: 0 0 8px #98cfff; animation: rise var(--duration) linear var(--delay) infinite; }
+    .scene { width: min(1200px, 92%); height: auto; min-height: 100svh; margin: auto; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(24px, 5vw, 80px); padding: 70px 0; }
+    .portrait { position: relative; width: min(100%, 440px, 44.57svh); justify-self: center; animation: reveal 1.8s both; }
+    .portrait-float { position: relative; isolation: isolate; animation: float 7s ease-in-out infinite; }
+    .me { position: relative; z-index: 1; width: 100%; height: auto; max-height: 78svh; object-fit: contain; opacity: 1; animation: none; -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent 100%); mask-image: linear-gradient(to bottom, #000 88%, transparent 100%); }
+    .logo {
+      position: absolute;
+      z-index: 0;
+      top: -9%;
+      left: 5%;
+      right: auto;
+      width: 80%;
+      height: auto;
+      animation: spin 10s linear infinite;
+      filter: drop-shadow(0 0 15px #267acc55);
+    }
+    .about { min-width: 0; animation: reveal 1.8s .3s both; }
+    .about-float { container-type: inline-size; margin-inline: auto; animation: float 9s ease-in-out -3s infinite; }
+    .eyebrow { display: flex; align-items: center; gap: 12px; font-size: 10px; letter-spacing: .3em; color: #9ca9b9; margin: 0 0 26px; }
+    .eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #a5d8ff; box-shadow: 0 0 14px #80c8ff; animation: pulse 3s ease-in-out infinite; }
+    h1 { position: relative; margin: 0; font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace; font-size: min(14cqw, 84px); font-weight: 700; line-height: 1.25; letter-spacing: -.045em; text-align: center; white-space: nowrap; }
+    .name { display: block; }
+    .alias { position: absolute; inset: 0; opacity: 0; color: #d6edff; }
+    .glitch .name { opacity: 0; }
+    .glitch .alias { opacity: 1; animation: glitch .32s steps(1, end) 3; }
+    .rule { width: 80px; height: 1px; margin: 30px auto; background: linear-gradient(90deg, #c3e6ff, #477ba4); transform-origin: center; animation: line 5s ease-in-out infinite; }
+    .bio { max-width: 390px; margin: 0 auto; font-size: clamp(16.8px, 1.68vw, 20.4px); line-height: 1.85; color: #99a2af; }
+    #sound { position: fixed; z-index: 3; bottom: 20px; right: 4%; border: 1px solid #ffffff25; padding: 10px 14px; background: #080b10cc; border-radius: 30px; font-size: 11px; letter-spacing: .08em; }
+    #sound:hover { border-color: #9fcfff; }
+    body:not(.started) .experience *, body:not(.started) .experience *::before { animation-play-state: paused !important; }
+    @keyframes reveal { from { opacity: 0; transform: translateY(35px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes float { 0%, 100% { transform: translateY(0) rotate(-.5deg); } 50% { transform: translateY(-13px) rotate(.5deg); } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes drift { to { transform: translate(18vw, 12vh) scale(1.2); } }
+    @keyframes pulse { 50% { opacity: .35; transform: scale(.7); } }
+    @keyframes line { 50% { transform: scaleX(1.7); opacity: .45; } }
+    @keyframes rise { from { transform: translateY(0); opacity: 0; } 15%, 75% { opacity: .65; } to { transform: translate(40px, -110svh); opacity: 0; } }
+    @keyframes glitch {
+      0%, 65%, 100% { transform: translate(0); text-shadow: none; }
+      15% { transform: translate(-2px, 1px) skewX(-1.5deg); text-shadow: 2px 0 #50eaffb3, -2px 0 #ff5aa5b3; }
+      35% { transform: translate(2px, -1px) skewX(1.5deg); text-shadow: -3px 0 #50eaff99, 3px 0 #ff5aa599; }
+      50% { transform: translate(-1px, 0); text-shadow: 1px 0 #50eaff99, -1px 0 #ff5aa599; }
+    }
+    @media (max-width: 650px) {
+      .scene { width: 90%; grid-template-columns: 1fr; gap: 28px; padding: 45px 0 100px; }
+      .portrait { width: min(68vw, 290px, 30.28svh); }
+      .me { max-height: 53svh; }
+      .about { width: 100%; max-width: 420px; justify-self: center; }
+      .eyebrow { margin-bottom: 16px; }
+      .rule { margin: 20px auto; }
+      .bio { max-width: none; }
+      .aura { width: 140vw; height: 140vw; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .experience *, .experience *::before, .experience *::after { animation: none !important; }
+      .experience, #start { transition-duration: .2s; }
+    }
+  </style>
+</head>
+<body>
+  <button id="start" type="button"><strong>НАЧАТЬ</strong><span>НАЖМИТЕ, ЧТОБЫ ВКЛЮЧИТЬ ЗВУК</span></button>
+  <main class="experience" inert>
+    <video id="background-video" src="agartha.mov" muted loop playsinline preload="metadata" aria-hidden="true"></video>
+    <div class="video-shade" aria-hidden="true"></div>
+    <div class="aura" aria-hidden="true"></div>
+    <div class="aura second" aria-hidden="true"></div>
+    <div class="grid" aria-hidden="true"></div>
+    <div class="particles" aria-hidden="true"></div>
+    <div class="scene">
+      <div class="portrait"><div class="portrait-float">
+        <img class="me" src="me.png" width="2403" height="4205" alt="Овезов Михаил">
+        <img class="logo" src="logo.png" width="900" height="894" alt="Логотип Высшей школы экономики">
+      </div></div>
+      <section class="about"><div class="about-float">
+        <h1 aria-label="Овезов Михаил"><span class="name" aria-hidden="true">Овезов Михаил</span><span class="alias" aria-hidden="true">ОвеZOV Михаил</span></h1>
+        <div class="rule" aria-hidden="true"></div>
+        <!-- Edit this paragraph to change your introduction. -->
+        <p class="bio">Место учебы: Фундаментальная и прикладная лингвистика, НИУ ВШЭ<br>Родной город: Агарта (Москва)<br>Школа: 1228 Лефортово</p>
+      </div></section>
+    </div>
+    <button id="sound" type="button" aria-label="Выключить музыку">ЗВУК: ВКЛ</button>
+  </main>
+
+  <audio id="music" src="mysoundtrack.mp3" preload="auto" loop></audio>
+
+  <script>
+    const music = document.getElementById('music');
+    const video = document.getElementById('background-video');
+    const start = document.getElementById('start');
+    const sound = document.getElementById('sound');
+    const experience = document.querySelector('.experience');
+    const heading = document.querySelector('h1');
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    const particles = document.querySelector('.particles');
+    for (let i = 0; i < 18; i++) {
+      const particle = document.createElement('i');
+      particle.style.cssText = `--x:${(i * 37) % 100}%;--duration:${12 + i % 9}s;--delay:-${i * 1.7}s`;
+      particles.append(particle);
+    }
+    function updateSound() {
+      const playing = !music.paused;
+      sound.textContent = playing ? 'ЗВУК: ВКЛ' : 'ЗВУК: ВЫКЛ';
+      sound.setAttribute('aria-label', playing ? 'Выключить музыку' : 'Включить музыку');
+    }
+    music.addEventListener('play', updateSound);
+    music.addEventListener('pause', updateSound);
+    start.addEventListener('click', () => {
+      video.muted = true;
+      video.play().catch(() => { video.hidden = true; });
+      music.play().catch(updateSound);
+      document.body.classList.add('started');
+      experience.inert = false;
+      start.disabled = true;
+      sound.focus({ preventScroll: true });
+      setInterval(() => {
+        if (document.hidden || reducedMotion.matches) return;
+        heading.classList.add('glitch');
+        setTimeout(() => heading.classList.remove('glitch'), 1200);
+      }, 8500);
+    }, { once: true });
+    sound.addEventListener('click', () => {
+      if (music.paused) music.play().catch(updateSound);
+      else music.pause();
+    });
+  </script>
+</body>
+</html>
