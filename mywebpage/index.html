@@ -29,6 +29,10 @@
     .grid { position: absolute; inset: 0; z-index: -1; opacity: .14; background-image: linear-gradient(#77889933 1px, transparent 1px), linear-gradient(90deg, #77889933 1px, transparent 1px); background-size: 80px 80px; mask-image: linear-gradient(transparent, black, transparent); pointer-events: none; }
     .particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
     .particles i { position: absolute; left: var(--x); bottom: -15px; width: 2px; height: 2px; border-radius: 50%; background: #c2e5ff; box-shadow: 0 0 8px #98cfff; animation: rise var(--duration) linear var(--delay) infinite; }
+    .course-nav { position: relative; width: min(1200px, 92%); margin: auto; padding: 24px 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; font-size: 14px; line-height: 1.6; }
+    a { color: #c3e6ff; text-underline-offset: .2em; }
+    a:hover { color: white; }
+    a:focus-visible { outline: 2px solid #c3e6ff; outline-offset: 4px; }
     .scene { width: min(1200px, 92%); height: auto; min-height: 100svh; margin: auto; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(24px, 5vw, 80px); padding: 70px 0; }
     .portrait { position: relative; width: min(100%, 440px, 44.57svh); justify-self: center; animation: reveal 1.8s both; }
     .portrait-float { position: relative; isolation: isolate; animation: float 7s ease-in-out infinite; }
@@ -55,6 +59,9 @@
     .glitch .alias { opacity: 1; animation: glitch .32s steps(1, end) 3; }
     .rule { width: 80px; height: 1px; margin: 30px auto; background: linear-gradient(90deg, #c3e6ff, #477ba4); transform-origin: center; animation: line 5s ease-in-out infinite; }
     .bio { max-width: 390px; margin: 0 auto; font-size: clamp(16.8px, 1.68vw, 20.4px); line-height: 1.85; color: #99a2af; }
+    .bio p { margin: 0 0 1em; }
+    .bio p:last-child { margin-bottom: 0; }
+    .facts { padding-bottom: 1em; border-bottom: 1px solid #ffffff25; }
     #sound { position: fixed; z-index: 3; bottom: 20px; right: 4%; border: 1px solid #ffffff25; padding: 10px 14px; background: #080b10cc; border-radius: 30px; font-size: 11px; letter-spacing: .08em; }
     #sound:hover { border-color: #9fcfff; }
     body:not(.started) .experience *, body:not(.started) .experience *::before { animation-play-state: paused !important; }
@@ -96,6 +103,12 @@
     <div class="aura second" aria-hidden="true"></div>
     <div class="grid" aria-hidden="true"></div>
     <div class="particles" aria-hidden="true"></div>
+    <nav class="course-nav" aria-label="Ссылки на учебу и GitHub">
+      <a href="https://ling.hse.ru/">Школа лингвистики НИУ ВШЭ</a>
+      <a href="https://lingvocodes.github.io/HSEinfo/ba-ling-2026/index.html">Страница курса</a>
+      <a href="https://lingvocodes.github.io/HSEinfo/ba-ling-2026/baling_262.html">Группа БФИКЛ 262</a>
+      <a href="https://github.com/sevenracin">GitHub</a>
+    </nav>
     <div class="scene">
       <div class="portrait"><div class="portrait-float">
         <img class="me" src="me.png" width="2403" height="4205" alt="Овезов Михаил">
@@ -104,8 +117,12 @@
       <section class="about"><div class="about-float">
         <h1 aria-label="Овезов Михаил"><span class="name" aria-hidden="true">Овезов Михаил</span><span class="alias" aria-hidden="true">ОвеZOV Михаил</span></h1>
         <div class="rule" aria-hidden="true"></div>
-        <!-- Edit this paragraph to change your introduction. -->
-        <p class="bio">Место учебы: Фундаментальная и прикладная лингвистика, НИУ ВШЭ<br>Родной город: Агарта (Москва)<br>Школа: 1228 Лефортово</p>
+        <div class="bio">
+          <p class="facts"><strong>Место учебы:</strong> Фундаментальная и прикладная лингвистика, НИУ ВШЭ<br><strong>Родной город:</strong> Агарта (Москва)<br><strong>Школа:</strong> 1228 Лефортово</p>
+          <p>Люблю компьютеры, программирование и языки — неважно, человеческие или программирования.</p>
+          <p>Сумасшедший ИИ-техбро из Сан-Франциско с двумя подписками на ChatGPT Codex, Grok и Claude Code.</p>
+          <p>Люблю кодить самостоятельно, а также выкладывать полнейший ИИ-слоп на GitHub.</p>
+        </div>
       </div></section>
     </div>
     <button id="sound" type="button" aria-label="Выключить музыку">ЗВУК: ВКЛ</button>

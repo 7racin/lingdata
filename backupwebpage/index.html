@@ -2,12 +2,12 @@
 
 <!-- так в HTML обозначаются комментарии. Выше вы видите объявление типа документа (DOCTYPE), так браузер понимает, что код ниже нужно интерпретировать как html -->
 
-<html>
+<html lang="ru">
 
 <!-- зона заголовка html, тег <title> - строка, которую браузер отображает на вкладках над страницами, <meta> и <link> сообщают технические сведения для браузера, например, что файл имеет кодировку Юникод (utf-8) -->
 
 	<head>
-		<title>Личная страница Веры Кузнецовой</title>
+		<title>Личная страница Михаила Овезова</title>
 	 	<!-- Required meta tags -->
 	 	<meta charset="utf-8">
 	 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,6 +18,11 @@
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <!-- Эта страница сделана с помощью bootstrap - популярной библиотеки для создания и настройки сайтов. Ниже вы увидите, что многие теги содержат атрибуты class - bootstrap содержит шаблоны, как такие элементы красиво оформить -->
 
+        <style>
+            body { background-color:#eef3f6; color:#263640; }
+            .navbar-default { background-color:#dce8ed; }
+            a { color:#31566b; }
+        </style>
 	</head>
 	
 <!-- body - главная, содержательная часть страницы. Контент на этой странице делится на меню (nav), "шапку" (header), "подвал" (footer) и все остальное (мы заключили остаток в тег section) -->	
@@ -25,17 +30,17 @@
 
 <!-- меню (navigation bar) -->
 
-		<nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+		<nav id="mainNav" class="navbar navbar-default navbar-static-top navbar-custom">
 
 <!-- div - это контейнеры - коробочки с текстом и/или графикой, которые можно вкладывать друг в друга. Пристально смотреть на теги в этой части кода не нужно -->
 			<div class="container"> 
 				<div class="navbar-header"> 
 					<a href="https://ling.hse.ru/" class="navbar-brand">Школа лингвистики НИУ ВШЭ</a> 
 				</div> 
-				<nav class="collapse navbar-collapse" id="bs-navbar"> 
+				<nav class="navbar-collapse" id="bs-navbar">
 					<ul class="nav navbar-nav navbar-right"> 
 						<li> <a href="https://lingvocodes.github.io/HSEinfo/ba-ling-2026/index.html">Страница курса</a> </li> 
-						<li> <a href="https://lingvocodes.github.io/HSEinfo/ba-ling-2026/baling_261.html">Страница группы</a> </li> 
+						<li> <a href="https://lingvocodes.github.io/HSEinfo/ba-ling-2026/baling_262.html">Группа БФИКЛ 262</a> </li>
 <!-- поправьте номер группы в URL, если нужно (от 1 до 4) -->
 					</ul>
 				</nav> 
@@ -44,20 +49,20 @@
 
 <!-- начинается шапка. у тега header есть атрибут style, который задает цвет фона и отступы. поменяйте значения атрибутов и посмотрите, как изменится страница -->
 
-		<header style="background-color:plum; padding-top:70px; "> 
+		<header style="background-color:#23323c; background-image:url('https://media1.tenor.com/m/LV2RkOxTdhkAAAAd/verity-verity-minecraft.gif'); background-size:cover; background-position:center; color:white; text-shadow:1px 1px 3px black; padding-top:20px;">
 			<div class="container"> 
 				<div class="row">
 					<div class="col-md-4">
 						<br><br>
 <!-- здесь и дальше нужно поменять весь содержательный текст, чтобы получилась ваша личная страница -->
-						<h1>Вера Кузнецова</h1>
+						<h1>Овезов Михаил</h1>
 						<hr> <!-- это горизонтальная линия -->
-						<p><i>Человек, умеющий <b>создавать</i> HTML</b></p> 
+						<p><i>Человек, умеющий <b>создавать HTML</b></i></p>
 					</div>
 					<div class="col-md-4">
 <!-- img - тег для вставки изображений. Мы использовали атрибут style, чтобы задать размер изображения и ширину рамки-->
 <!-- Измените URL на URL вашей фотографии, а также настройте размер изображения -->
-<img src="myphoto.jpg" style="height:320px; margin:20px 20px 40px 20px; " >
+<img src="myphoto.jpg" alt="Портрет Михаила Овезова" style="height:320px; max-width:100%; margin:20px 0 40px;">
 					</div>
 				</div>
 			</div>
@@ -77,37 +82,29 @@
 					</article>
 					<article>
 						<h3>Родной город</h3>
-						<p>Москва</p>
+						<p>Агарта (Москва)</p>
 					</article>
 					<article>
 						<h3>Школа</h3>
 <!-- когда будете менять текст, не используйте бюрократических слов типа ГБОУ СОШ, ну пожаалуйста -->
-						<p>СУНЦ НГУ</p>
+						<p>1228 Лефортово</p>
 					</article>
 				</div>
 
 				<div class="col-md-6">
 					<article>
-						<h3>Тут можно написать</h3>
-						<p>Еще много много много много много много <br>
-						много <br>
-						много <br>
-						много <br>
-						много <br>
-						много <br>
-						много <br>
-						много <br>
-						всего о себе</p>
+						<h3>Обо мне</h3>
+						<p>Люблю компьютеры, программирование и языки — неважно, человеческие или программирования.</p>
+						<p>Сумасшедший ИИ-техбро из Сан-Франциско с двумя подписками на ChatGPT Codex, Grok и Claude Code.</p>
+						<p>Люблю кодить самостоятельно, а также выкладывать полнейший ИИ-слоп на GitHub.</p>
 					</article>
 				</div>
 
 				<div class="col-md-3">
-					<h3>Я в соцсетях</h3>
+					<h3>Я на GitHub</h3>
 <!-- тег <ul> - unordered list. Еще бывает тег <ol> -->
 					<ul>
-						<li>VK</li>
-						<li>Discord</li>
-						<li>Telegram</li>
+						<li><a href="https://github.com/sevenracin">GitHub</a></li>
 					</ul>
 				</div>
 			</div>
@@ -116,7 +113,7 @@
 <!-- это подвал. В этой части страницы обычно ставят копирайт (с помощью символа &copy;) и пишут об истории создания страницы. Поставьте свой копирайт -->
 		<footer class="bs-docs-footer"> 
 			<div class="container"> 
-				<p style="text-align:right; ">&copy; В. Кузнецова, 2026</p> 
+				<p style="text-align:right; ">&copy; М. Овезов, 2026</p>
 			</div>
 		</footer>
 	</body>
